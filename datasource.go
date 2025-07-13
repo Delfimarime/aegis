@@ -18,6 +18,7 @@ type DatasourceSearchOpts struct {
 	Offset *int
 	Limit  *int
 	Sort   *DatasourceSortSearchOpt
+	Select *DatasourceAttributeSelectionSearchOpt
 }
 
 type DatasourceSortSearchOpt struct {
@@ -26,8 +27,21 @@ type DatasourceSortSearchOpt struct {
 	LastUpdatedAt *Direction
 }
 
+type DatasourceAttributeSelectionSearchOpt struct {
+	Name          bool
+	Description   bool
+	Content       bool
+	Tags          bool
+	InheritedFrom bool
+	CreatedAt     bool
+	CreatedBy     bool
+	LastUpdatedAt bool
+	LastUpdatedBy bool
+}
+
 type Datasource interface {
-	GetPolicies(resourceType, id string, opt ...SearchOpts) ([]Policy, int64, error)
+	GetPolicy(resourceType, resourceId, id string) (*Policy, error)
+	GetPolicies(resourceType, resourceId string, opt ...SearchOpts) ([]Policy, int64, error)
 }
 
 func WithPagination(offset, limit int) SearchOpts {
@@ -40,5 +54,11 @@ func WithPagination(offset, limit int) SearchOpts {
 func WithSort(v DatasourceSortSearchOpt) SearchOpts {
 	return func(opts *DatasourceSearchOpts) {
 		opts.Sort = funk.PtrOf(v).(*DatasourceSortSearchOpt)
+	}
+}
+
+func WithSelect(opt *DatasourceAttributeSelectionSearchOpt) SearchOpts {
+	return func(opts *DatasourceSearchOpts) {
+		opts.Select = opt
 	}
 }
