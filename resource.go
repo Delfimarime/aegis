@@ -9,7 +9,6 @@ type Resource interface {
 type Metadata struct {
 	Id            string
 	Type          string
-	Policies      []Policy
 	Operations    []string
 	CreatedAt     *time.Time
 	CreatedBy     *Principal
@@ -24,10 +23,17 @@ type Policy struct {
 	Description   string
 	Content       []byte
 	Tags          []string
+	InheritedFrom Named
 	CreatedAt     *time.Time
 	CreatedBy     *Principal
 	LastUpdatedAt *time.Time
 	LastUpdatedBy *Principal
+}
+
+type Named struct {
+	Id   string
+	Name string
+	Type string
 }
 
 type Principal struct {
