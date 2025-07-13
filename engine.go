@@ -8,5 +8,6 @@ type Aegis struct {
 }
 
 func (instance *Aegis) evaluate(resource Resource) (EvaluateResponse, error) {
+	metadata := resource.Metadata()
 	return EvaluateResponse{}, nil
 }
