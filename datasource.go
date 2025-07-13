@@ -25,6 +25,7 @@ type DatasourceSortSearchOpt struct {
 	Name          *Direction
 	CreatedAt     *Direction
 	LastUpdatedAt *Direction
+	Type          *Direction
 }
 
 type DatasourceAttributeSelectionSearchOpt struct {

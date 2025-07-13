@@ -31,7 +31,6 @@ func (instance *Aegis) evaluate(request EvaluateRequest) (EvaluateResponse, erro
 	}
 	logger.Debug(fmt.Sprintf("%d policies retrieved for the resource", numberOfElements))
 	for _, policy := range page {
-
 	}
 	return EvaluateResponse{}, nil
 }
