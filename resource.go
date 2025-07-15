@@ -8,6 +8,7 @@ type Resource interface {
 
 type Metadata struct {
 	Id            string
+	Name          string
 	Type          string
 	Operations    []string
 	CreatedAt     *time.Time
