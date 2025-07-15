@@ -1,6 +1,7 @@
 package aegis
 
 import (
+	"context"
 	"github.com/thoas/go-funk"
 )
 
@@ -41,8 +42,8 @@ type DatasourceAttributeSelectionSearchOpt struct {
 }
 
 type Datasource interface {
-	GetPolicy(resourceType, resourceId, id string) (*Policy, error)
-	GetPolicies(resourceType, resourceId string, opt ...SearchOpts) ([]Policy, int64, error)
+	GetPolicy(ctx context.Context, resourceType, resourceId, id string) (*Policy, error)
+	GetPolicies(ctx context.Context, resourceType, resourceId string, opt ...SearchOpts) ([]Policy, int64, error)
 }
 
 func WithPagination(offset, limit int) SearchOpts {

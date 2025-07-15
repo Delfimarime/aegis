@@ -20,7 +20,6 @@ type Metadata struct {
 type Policy struct {
 	Id            string
 	Name          string
-	Type          string
 	Description   string
 	Content       []byte
 	Tags          []string
